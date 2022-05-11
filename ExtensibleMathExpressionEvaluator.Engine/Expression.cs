@@ -10,7 +10,7 @@ using System.Text;
 namespace ExtensibleMathExpressionEvaluator.Engine
 {
     /// <summary>
-    /// Expression Model and Evaluation Implementation.
+    /// Expression Stateful Modeling for Parsing and Evaluation.
     /// </summary>
     public class Expression
     {
