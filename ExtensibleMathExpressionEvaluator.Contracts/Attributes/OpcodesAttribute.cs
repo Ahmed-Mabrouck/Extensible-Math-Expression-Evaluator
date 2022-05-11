@@ -8,12 +8,12 @@ namespace ExtensibleMathExpressionEvaluator.Contracts.Attributes
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
     public class OpcodesAttribute : Attribute
     {
-        public string[] Opcodes { get; set; }
+        public char[] Opcodes { get; set; }
         /// <summary>
         /// 
         /// </summary>
         /// <param name="op">Operator.</param>
-        public OpcodesAttribute(string[] opcodes)
+        public OpcodesAttribute(char[] opcodes)
         {
             Opcodes = opcodes;
         }

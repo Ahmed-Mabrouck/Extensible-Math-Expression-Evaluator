@@ -8,7 +8,7 @@ namespace ExtensibleMathExpressionEvaluator.Engine.Tokens.Operators
     /// <summary>
     /// Operator Token Computes The Exponential Expression for Base Numeric Token and Exponent Numeric Term with "^" Opcode.
     /// </summary>
-    [Opcodes(new[] { "^" })]
+    [Opcodes(new[] { '^' })]
     public class PowerOperatorExpressionToken : OperatorExpressionToken
     {
         public override int Precedence { get { return 3; } }

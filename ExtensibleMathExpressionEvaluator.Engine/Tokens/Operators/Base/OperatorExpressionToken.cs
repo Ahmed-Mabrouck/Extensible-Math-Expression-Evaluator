@@ -25,7 +25,7 @@ namespace ExtensibleMathExpressionEvaluator.Engine.Tokens.Operators.Base
                 throw new InvalidOperationException($"{GetType().FullName} should be decorated with Operators attribute to specify the operator token.");
 
             Value = operatorsAttribute.Opcodes
-                .FirstOrDefault();
+                .FirstOrDefault().ToString();
 
             if (String.IsNullOrEmpty(Value))
                 throw new InvalidOperationException($"{GetType().FullName} empty operator token is not allowed.");

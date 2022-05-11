@@ -8,7 +8,7 @@ namespace ExtensibleMathExpressionEvaluator.Engine.Tokens.Operators
     /// <summary>
     /// Operator Token Adds 2 Numeric Tokens with "+" Opcode.
     /// </summary>
-    [Opcodes(new[] { "+" })]
+    [Opcodes(new[] { '+' })]
     public class AdditionOperatorExpressionToken : OperatorExpressionToken
     {
         public override int Precedence { get { return 1; } }

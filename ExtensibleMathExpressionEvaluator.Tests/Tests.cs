@@ -14,7 +14,7 @@ namespace ExtensibleMathExpressionEvaluator.Tests
         /// <summary>
         /// Operators Dictionary.
         /// </summary>
-        public IDictionary<String, IOperatorExpressionToken> Operators { get; set; }
+        public IDictionary<char, IOperatorExpressionToken> Operators { get; set; }
 
         /// <summary>
         /// Populate Operators Dictionary by Getting All Types in ExtensibleMathExpressionEvaluator.Engine Assembly That 
@@ -23,7 +23,7 @@ namespace ExtensibleMathExpressionEvaluator.Tests
         [SetUp]
         public void Setup()
         {
-            Operators = new Dictionary<String, IOperatorExpressionToken>();
+            Operators = new Dictionary<char, IOperatorExpressionToken>();
 
             // Iterating All Types Implementing IOperatorExpressionToken and Decorated with Operators Attribute.
             foreach (var t in Assembly.GetAssembly(typeof(Expression))

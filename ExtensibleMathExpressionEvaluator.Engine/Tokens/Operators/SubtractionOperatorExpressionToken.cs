@@ -8,7 +8,7 @@ namespace ExtensibleMathExpressionEvaluator.Engine.Tokens.Operators
     /// <summary>
     /// Operator Token Subtracts 2 Numeric Tokens with "-" Opcode.
     /// </summary>
-    [Opcodes(new[] { "-" })]
+    [Opcodes(new[] { '-' })]
     public class SubtractionOperatorExpressionToken : OperatorExpressionToken
     {
         public override int Precedence { get { return 1; } }

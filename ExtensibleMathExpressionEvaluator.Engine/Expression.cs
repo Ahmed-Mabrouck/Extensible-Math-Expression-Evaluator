@@ -25,7 +25,7 @@ namespace ExtensibleMathExpressionEvaluator.Engine
         /// <summary>
         /// Supported Operators Mapped by Their Opcodes.
         /// </summary>
-        public IDictionary<string, IOperatorExpressionToken> SupportedOperators { get; private set; }
+        public IDictionary<char, IOperatorExpressionToken> SupportedOperators { get; private set; }
         /// <summary>
         /// Tokenized Expression in Postfix Notation.
         /// </summary>
@@ -43,7 +43,7 @@ namespace ExtensibleMathExpressionEvaluator.Engine
         /// </summary>
         public bool IsEvaluated { get => Result != null; }
 
-        public Expression(string expressionText, IDictionary<String, IOperatorExpressionToken> supportedOperators)
+        public Expression(string expressionText, IDictionary<char, IOperatorExpressionToken> supportedOperators)
         {
             // Remove Spaces from The Expression.
             ExpressionText = expressionText.Replace(" ", "");
@@ -82,7 +82,7 @@ namespace ExtensibleMathExpressionEvaluator.Engine
                     var t1 = stack.Pop();
 
                     // Push Operation Result Token to The Stack.
-                    stack.Push(SupportedOperators[token.Value].Evaluate(t1, t2));
+                    stack.Push(SupportedOperators[token.Value.Single()].Evaluate(t1, t2));
                 }
                 // Operand Token Behavior.
                 else
@@ -150,7 +150,7 @@ namespace ExtensibleMathExpressionEvaluator.Engine
                         operatorsStack.Peek() != "(")
                     {
                         // Enqueues The Mapped Operator Token Object by Its Opcode from SupportedOperators Dictionary.
-                        PostfixExpressionTokens.Enqueue(SupportedOperators[operatorsStack.Pop()]);
+                        PostfixExpressionTokens.Enqueue(SupportedOperators[operatorsStack.Pop().Single()]);
                     }
 
                     // Invalid Expression Syntax: Invalid Parenthes Locations.
@@ -165,13 +165,13 @@ namespace ExtensibleMathExpressionEvaluator.Engine
                     }
                 }
                 // Tokenizing Operators According to Their Precedence.
-                else if (SupportedOperators.Keys.Contains(c.ToString()))
+                else if (SupportedOperators.Keys.Contains(c))
                 {
                     // Tokenize All Previous Operators with Higher Precedence.
-                    while (operatorsStack.Count > 0 && SupportedOperators.ContainsKey(operatorsStack.Peek())
-                        && SupportedOperators[c.ToString()].Precedence <= SupportedOperators[operatorsStack.Peek()].Precedence)
+                    while (operatorsStack.Count > 0 && SupportedOperators.ContainsKey(operatorsStack.Peek().Single())
+                        && SupportedOperators[c].Precedence <= SupportedOperators[operatorsStack.Peek().Single()].Precedence)
                     {
-                        PostfixExpressionTokens.Enqueue(SupportedOperators[operatorsStack.Pop()]);
+                        PostfixExpressionTokens.Enqueue(SupportedOperators[operatorsStack.Pop().Single()]);
                     }
                     // Push The Current Operator to Operators Stack.
                     operatorsStack.Push(c.ToString());
@@ -186,7 +186,7 @@ namespace ExtensibleMathExpressionEvaluator.Engine
             // Tokenize All Remaining Operators (Lower Precedence).
             while (operatorsStack.Count > 0)
             {
-                PostfixExpressionTokens.Enqueue(SupportedOperators[operatorsStack.Pop()]);
+                PostfixExpressionTokens.Enqueue(SupportedOperators[operatorsStack.Pop().Single()]);
             }
 
             // Formulate Postfix Expresion Text from Tokens for Better Readability.

@@ -8,7 +8,7 @@ namespace ExtensibleMathExpressionEvaluator.Engine.Tokens.Operators
     /// <summary>
     /// Operator Token Multiplies 2 Numeric Tokens with "×,*" Opcodes.
     /// </summary>
-    [Opcodes(new[] { "×", "*" })]
+    [Opcodes(new[] { '×', '*' })]
     public class MultiplicationOperatorExpressionToken : OperatorExpressionToken
     {
         public override int Precedence { get { return 2; } }
