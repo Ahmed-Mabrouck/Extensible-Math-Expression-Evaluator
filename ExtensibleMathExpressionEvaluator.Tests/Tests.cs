@@ -12,9 +12,9 @@ namespace ExtensibleMathExpressionEvaluator.Tests
     public class Tests
     {
         /// <summary>
-        /// Operators Dictionary.
+        /// Supported Operators Dictionary.
         /// </summary>
-        public IDictionary<char, IOperatorExpressionToken> Operators { get; set; }
+        public IDictionary<char, IOperatorExpressionToken> SupportedOperators { get; set; }
 
         /// <summary>
         /// Populate Operators Dictionary by Getting All Types in ExtensibleMathExpressionEvaluator.Engine Assembly That 
@@ -23,7 +23,7 @@ namespace ExtensibleMathExpressionEvaluator.Tests
         [SetUp]
         public void Setup()
         {
-            Operators = new Dictionary<char, IOperatorExpressionToken>();
+            SupportedOperators = new Dictionary<char, IOperatorExpressionToken>();
 
             // Iterating All Types Implementing IOperatorExpressionToken and Decorated with Operators Attribute.
             foreach (var t in Assembly.GetAssembly(typeof(Expression))
@@ -38,18 +38,18 @@ namespace ExtensibleMathExpressionEvaluator.Tests
                 foreach (var op in t.GetCustomAttributes<OpcodesAttribute>().Single().Opcodes)
                 {
                     // Add The Instansiated Object to The Operators Dictionary with Key Equals to Operator Opcodes.
-                    Operators.Add(op, operatorExpressionToken);
+                    SupportedOperators.Add(op, operatorExpressionToken);
                 }
             }
 
-            Assert.IsTrue(Operators.Count > 0);
+            Assert.IsTrue(SupportedOperators.Count > 0);
         }
 
         [Test]
         public void TestMathematicalExpression()
         {
             double result = (3.5 + 5.5) * (4.5 - 2.5);
-            Assert.AreEqual(result, Double.Parse(new Expression("(3.5 + 5.5) * (4.5 - 2.5)", Operators)
+            Assert.AreEqual(result, Double.Parse(new Expression("(3.5 + 5.5) * (4.5 - 2.5)", SupportedOperators)
                 .Parse()
                 .Evaluate()
                 .Value));
