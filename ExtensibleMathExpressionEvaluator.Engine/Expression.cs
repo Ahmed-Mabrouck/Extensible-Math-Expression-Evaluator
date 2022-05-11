@@ -189,7 +189,7 @@ namespace ExtensibleMathExpressionEvaluator.Engine
                 PostfixExpressionTokens.Enqueue(SupportedOperators[operatorsStack.Pop().Single()]);
             }
 
-            // Formulate Postfix Expresion Text from Tokens for Better Readability.
+            // Formulate Postfix Expression Text from Tokens for Better Readability.
             PostfixExpressionText = String.Join("", PostfixExpressionTokens.Select(t => t.Value));
         }
     }
