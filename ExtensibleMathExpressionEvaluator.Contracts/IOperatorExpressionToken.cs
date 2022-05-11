@@ -11,7 +11,7 @@
         /// Operator Precedence Determines How Operators Are Parsed Concerning Each Other. Operators with Higher Precedence 
         /// Become The Operands of Operators with Lower Precedence.
         /// </summary>
-        public int Precedence { get; }
+        int Precedence { get; }
 
         /// <summary>
         /// Evaluate Operator Expression on Both t1 and t2 Expression Tokens.

@@ -9,6 +9,6 @@
         /// <summary>
         /// The Value of The Token.
         /// </summary>
-        public string Value { get; set; }
+        string Value { get; set; }
     }
 }
