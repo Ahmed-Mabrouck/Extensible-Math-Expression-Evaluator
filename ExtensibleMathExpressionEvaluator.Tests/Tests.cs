@@ -1,7 +1,7 @@
-using NUnit.Framework;
 using ExtensibleMathExpressionEvaluator.Contracts;
 using ExtensibleMathExpressionEvaluator.Contracts.Attributes;
 using ExtensibleMathExpressionEvaluator.Engine;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,7 +37,7 @@ namespace ExtensibleMathExpressionEvaluator.Tests
                 // Iterating All Assigned Operators (I.E. Multiplication Has Multiple Operator Opcodes */×).
                 foreach (var op in t.GetCustomAttributes<OpcodesAttribute>().Single().Opcodes)
                 {
-                    // Add The Instansiated Object to The Operators Dictionary with Key Equals to Operator Opcodes.
+                    // Add The Instantiated Object to The Operators Dictionary with Key Equals to Operator Opcodes.
                     SupportedOperators.Add(op, operatorExpressionToken);
                 }
             }

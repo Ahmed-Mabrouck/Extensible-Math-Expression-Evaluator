@@ -1,10 +1,10 @@
 ﻿using ExtensibleMathExpressionEvaluator.Contracts;
 using ExtensibleMathExpressionEvaluator.Engine.Exceptions;
+using ExtensibleMathExpressionEvaluator.Engine.Extensions;
 using ExtensibleMathExpressionEvaluator.Engine.Tokens;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using ExtensibleMathExpressionEvaluator.Engine.Extensions;
 using System.Text;
 
 namespace ExtensibleMathExpressionEvaluator.Engine
@@ -92,7 +92,7 @@ namespace ExtensibleMathExpressionEvaluator.Engine
                 }
             }
 
-            // Set The Final Evaluated Expression Result Token by Poping It from The Stack and Return It Back.
+            // Set The Final Evaluated Expression Result Token by Popping It from The Stack and Return It Back.
             Result = stack.Pop();
             return Result;
         }
@@ -122,7 +122,7 @@ namespace ExtensibleMathExpressionEvaluator.Engine
                     // Iterate Expression String to Extract Number Consequent Characters.
                     while (++i <= (ExpressionText.Length - 1))
                     {
-                        // Decrement Iterator Coutner Varibale and Break If The Character Is Not a Digit or a Floating Point.
+                        // Decrement Iterator Counter Variable and Break If The Character Is Not a Digit or a Floating Point.
                         if (!ExpressionText[i].IsDigitOrFloatingPoint())
                         {
                             --i;
@@ -137,7 +137,7 @@ namespace ExtensibleMathExpressionEvaluator.Engine
                     PostfixExpressionTokens.Enqueue(new NumericOperandExpressionToken(operandsBuilder.ToString()));
                     operandsBuilder.Clear();
                 }
-                // Push Opening Parenthes '(' to Operators Stack to Override Operators Default Precedence.
+                // Push Opening Parenthesis '(' to Operators Stack to Override Operators Default Precedence.
                 else if (c == '(')
                 {
                     operatorsStack.Push(c.ToString());
@@ -153,12 +153,12 @@ namespace ExtensibleMathExpressionEvaluator.Engine
                         PostfixExpressionTokens.Enqueue(SupportedOperators[operatorsStack.Pop().Single()]);
                     }
 
-                    // Invalid Expression Syntax: Invalid Parenthes Locations.
+                    // Invalid Expression Syntax: Invalid Parenthesis Locations.
                     if (operatorsStack.Count > 0 && operatorsStack.Peek() != "(")
                     {
                         throw new ExpressionSyntaxErrorException(c);
                     }
-                    // Pop Opening Parenthes '(' from Operators Stack.
+                    // Pop Opening Parenthesis '(' from Operators Stack.
                     else
                     {
                         operatorsStack.Pop();

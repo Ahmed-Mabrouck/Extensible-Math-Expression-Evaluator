@@ -3,7 +3,7 @@
 namespace ExtensibleMathExpressionEvaluator.Engine.Tokens
 {
     /// <summary>
-    /// Numeric Operand Expression Token Representing Numbers wuthin Any Expression.
+    /// Numeric Operand Expression Token Representing Numbers within Any Expression.
     /// </summary>
     public class NumericOperandExpressionToken : IExpressionToken
     {

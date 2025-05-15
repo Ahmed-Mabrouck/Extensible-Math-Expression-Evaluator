@@ -19,11 +19,7 @@ namespace ExtensibleMathExpressionEvaluator.Engine.Tokens.Operators.Base
         public OperatorExpressionToken()
         {
             var operatorsAttribute = GetType().GetCustomAttributes<OpcodesAttribute>()
-                .FirstOrDefault();
-
-            if (operatorsAttribute == null)
-                throw new InvalidOperationException($"{GetType().FullName} should be decorated with Operators attribute to specify the operator token.");
-
+                .FirstOrDefault() ?? throw new InvalidOperationException($"{GetType().FullName} should be decorated with Operators attribute to specify the operator token.");
             Value = operatorsAttribute.Opcodes
                 .FirstOrDefault().ToString();
 
